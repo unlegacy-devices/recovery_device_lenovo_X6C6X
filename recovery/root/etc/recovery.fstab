@@ -1,25 +1,28 @@
 # 1 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
-# 1 "<built-in>"
-# 1 "<command-line>"
-# 1 "/usr/include/stdc-predef.h" 1 3 4
-# 1 "<command-line>" 2
-# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
-# 103 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
-/dev/block/platform/bootdevice/by-name/system / ext4 ro wait,recoveryonly
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 341 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765" 2
+# 131 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
+system /system ext4 ro wait,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey,slotselect
 
-/dev/block/platform/bootdevice/by-name/vendor /vendor ext4 ro wait,recoveryonly
+vendor /vendor ext4 ro wait,avb,logical,first_stage_mount,slotselect
 
 
+product /product ext4 ro wait,avb,logical,first_stage_mount,slotselect
+# 155 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
+/dev/block/platform/bootdevice/by-name/md_udc /metadata ext4 noatime,nosuid,nodev,discard wait,check,formattable,first_stage_mount
 
 
-/dev/block/platform/bootdevice/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,quota,reservedsize=200M,formattable,resize,encryptable=/dev/block/platform/bootdevice/by-name/metadata
-# original /dev/block/platform/bootdevice/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,quota,reservedsize=200M,formattable,resize,forcefdeorfbe=/dev/block/platform/bootdevice/by-name/metadata
+/dev/block/platform/bootdevice/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=panic,inlinecrypt latemount,wait,check,quota,reservedsize=128M,formattable,resize,checkpoint=block,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption
 
-/dev/block/platform/bootdevice/by-name/cache /cache ext4 noatime,nosuid,nodev,noauto_da_alloc,discard wait,check,formattable
+
 
 /dev/block/platform/bootdevice/by-name/protect1 /mnt/vendor/protect_f ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/platform/bootdevice/by-name/protect2 /mnt/vendor/protect_s ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
-/dev/block/platform/bootdevice/by-name/nvdata /mnt/vendor/nvdata ext4 noatime,nosuid,nodev,noauto_da_alloc,discard wait,check,formattable
+/dev/block/platform/bootdevice/by-name/nvdata /mnt/vendor/nvdata ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 /dev/block/platform/bootdevice/by-name/nvcfg /mnt/vendor/nvcfg ext4 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,formattable
 
 
@@ -36,8 +39,12 @@
 /dev/block/platform/bootdevice/by-name/lk /bootloader emmc defaults defaults
 /dev/block/platform/bootdevice/by-name/lk2 /bootloader2 emmc defaults defaults
 /dev/block/platform/bootdevice/by-name/para /misc emmc defaults defaults
-/dev/block/platform/bootdevice/by-name/boot /boot emmc defaults defaults
-/dev/block/platform/bootdevice/by-name/recovery /recovery emmc defaults defaults
+
+/dev/block/platform/bootdevice/by-name/boot /boot emmc defaults first_stage_mount,nofail,slotselect
+# 191 "vendor/mediatek/proprietary/hardware/fstab/mt6765/fstab.in.mt6765"
+/dev/block/platform/bootdevice/by-name/vbmeta_vendor /vbmeta_vendor emmc defaults first_stage_mount,nofail,slotselect
+/dev/block/platform/bootdevice/by-name/vbmeta_system /vbmeta_system emmc defaults first_stage_mount,nofail,slotselect,avb=vbmeta
+
 
 
 
@@ -69,6 +76,8 @@
 
 
 
+/dev/block/platform/bootdevice/by-name/gz1 /gz1 emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/gz2 /gz2 emmc defaults defaults
 
 /dev/block/platform/bootdevice/by-name/spmfw /spmfw emmc defaults defaults
 
