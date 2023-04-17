@@ -26,11 +26,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
+# Inherit from X6C6X device
+$(call inherit-product, device/lenovo/X6C6X/device.mk)
+
 # Device identifier.
 PRODUCT_NAME := twrp_$(PRODUCT_RELEASE_NAME)
 PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
 PRODUCT_BRAND := Lenovo
 PRODUCT_MODEL := Lenovo TB-X6C6X
 PRODUCT_MANUFACTURER := LENOVO
+
+PRODUCT_GMS_CLIENTID_BASE := android-lenovo-rvo3
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="full_P98928AA1S-user 12 SP1A.210812.016 p1rctb8786p164P6 release-keys"
+
+BUILD_FINGERPRINT := Lenovo/LenovoTB-X6C6X/X6C6X:12/SP1A.210812.016/S042_230114_ROW:user/release-keys
 
 

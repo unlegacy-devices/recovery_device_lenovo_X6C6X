@@ -18,6 +18,19 @@
 
 DEVICE_PATH := device/lenovo/X6C6X
 
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
+
+# A/B
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    system \
+    vendor \
+    product \
+    boot \
+    vbmeta_vendor \
+    vbmeta_system
+
 BOARD_USES_RECOVERY_AS_BOOT := true
 
 # Platform
@@ -100,13 +113,9 @@ TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_SUPERSU := true
-TW_DEVICE_VERSION := 0_notnoelchannel
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/twrp.fstab
+TW_DEVICE_VERSION := 0_opsonc_notnoelchannel
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/recovery.fstab
 
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_EXTRA_LANGUAGES := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-
-TW_OVERRIDE_SYSTEM_PROPS := \ "ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
-
-
