@@ -115,8 +115,7 @@ TW_USE_TOOLBOX := true
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_SUPERSU := true
 TW_DEVICE_VERSION := 0_opsonc_notnoelchannel
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/recovery.fstab
-
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/twrp.fstab
+TW_MTP_DEVICE := "/dev/usb_ffs"
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_EXTRA_LANGUAGES := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
