@@ -1,4 +1,4 @@
-/system                   ext4     system                                                   flags=display=system;logical;slotselect;wipeingui
+/system_root              ext4     system                                                   flags=display=system;logical;slotselect;wipeingui
 /vendor                   ext4     vendor                                                   flags=display=vendor;logical;slotselect;wipeingui
 /product                  ext4     product                                                  flags=display=product;logical;slotselect;wipeingui
 /metadata                 ext4     /dev/block/platform/bootdevice/by-name/md_udc            flags=display=metadata
